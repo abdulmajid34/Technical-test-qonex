@@ -20,7 +20,7 @@ class UserController {
 
     static async login(req, res, next) {
         try {
-            let { username, fullname, password } = req.body
+            let { username, password } = req.body
             let data = await User.findOne({
                 where: {
                     username
