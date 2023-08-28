@@ -2,9 +2,14 @@ const express = require('express');
 const { sequelize } = require('./models');
 const app = express();
 const cors = require('cors')
+<<<<<<< HEAD
 const PORT = process.env.PORT || 8000
 const routes = require('./routes')
 const erroHandler = require('./middlewares/errorHandlers')
+=======
+const PORT = process.env.PORT || 3000
+const routes = require('./routes')
+>>>>>>> de3f11c19b9a82ee96794e4f8f7d0a9150ae3b36
 
 
 sequelize.authenticate()
@@ -31,4 +36,3 @@ app.listen(PORT, (_) => {
 	console.log(`server listening on port ${PORT}`)
 })
 
-module.exports = app
