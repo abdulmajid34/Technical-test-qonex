@@ -2,9 +2,10 @@ const express = require('express');
 const { sequelize } = require('./models');
 const app = express();
 const cors = require('cors')
-const PORT = 3000
+const PORT = process.env.PORT || 3000
+const routes = require('./routes')
 
-// Menjalankan koneksi ke database
+
 sequelize.authenticate()
   .then(() => {
     console.log('Database terhubung');
@@ -13,11 +14,12 @@ sequelize.authenticate()
     console.error('Gagal terhubung ke database:', err);
   });
 
-// Mengatur routes atau middleware di sini
+
 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(routes)
 
 app.get('/', (req, res) => {
   res.send('HELLO WORLD 3')
