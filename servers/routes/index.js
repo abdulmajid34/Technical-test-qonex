@@ -1,20 +1,17 @@
 const router = require('express').Router()
-// const UserController = require('../controllers/userControllers')
-// const MovieController = require('../controllers/movieController');
-// const authentication = require('../middlewares/authentication')
-const { register, login, authController } = require('../controllers/authController')
+const UserController = require('../controllers/userControllers')
+const MovieController = require('../controllers/movieController');
+const authentication = require('../middlewares/authentication')
 
 router.get('/', (req, res) => {
     res.send("HELLO WORLD")
 })
-router.post('/register', register)
-router.post('/login', login)
+router.post('/register', UserController.register)
+router.post('/login', UserController.login)
 
-router.get('/protected', authController, (req, res) => {
-    res.json({ message: "HELLO WORLD" })
-})
-
-// router.use(authentication)
+router.use(authentication)
 router.get('/list/movies', MovieController.showListMovies)
+router.get('/movies/details/:id', MovieController.moviesDetails)
+router.get('/movies/videos/:id', MovieController.moviesTrailers)
 
 module.exports = router

@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt')
 function hashPassword(planPassword) {
     return bcrypt.hashSync(planPassword, 10)
 }
-function comparePassword(planPassword, encryptedPassowrd) {
+
+const comparePassword = async (planPassword, encryptedPassowrd) => {
     return bcrypt.compareSync(planPassword, encryptedPassowrd)
 }
 
