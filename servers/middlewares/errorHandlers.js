@@ -1,5 +1,4 @@
-module.exports = (err, req, res, next) => {
-    console.log(err.name);
+module.exports = (err, req, res, next) => {    
     if (err.name === 'SequelizeValidationError' ) {
         let arrErrors = [];
      
@@ -21,6 +20,8 @@ module.exports = (err, req, res, next) => {
         res.status(401).json({ message : 'Invalid JWT token'})
     } else if (err.name === 'SequelizeDatabaseError') {
         res.status(400).json({ message : "Invalid Input" })
+    } else if (err.name === 'err username already use') {
+        res.status(400).json({ message : "Username is already use" })
     } else {
         res.status(500).json({ message:  err.message || "Internal server error" });
     }
